@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     getPost(){
-      this.$store.commit('post/getpost');
+      this.$store.dispatch('post/getPost');
     }
   }
 };
