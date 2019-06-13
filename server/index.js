@@ -32,3 +32,24 @@ async function start() {
   })
 }
 start()
+
+//Set up mongoose connection
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb+srv://JustinWuYujie:Hello@123@cluster0-j7krw.azure.mongodb.net/test?retryWrites=true&w=majority';
+mongoose.connect(mongoDB, { useNewUrlParser: true });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+
+var Schema = mongoose.Schema
+
+var PostSchema = new Schema({
+  author: { type: String, required: true, max: 10 },
+  summary: { type: String, required: true, max: 1000 },
+  content: { type: String, required: true },
+  data: { type: Date, required: true }
+})
+
+
+
+
