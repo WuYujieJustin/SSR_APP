@@ -1,53 +1,34 @@
 <template>
   <div class="container">
-    <Postcard/>
-    <Postcard/>
-    <Postcard/>
-    <Postcard/>
-    <Postcard/>
-    <Postcard/>
+    <Postcard v-for="post in posts" :key="post.id" :post="post"></Postcard>
+    <p>{{posts[0].id}}</p>
+    <button @click="getPost">add </button>
   </div>
 </template>
 
 <script>
 import Postcard from "~/components/Postcard.vue";
-
+import axios from "axios";
 export default {
   components: {
     Postcard
+  },
+  computed: {
+    posts() {
+      return this.$store.state.post.posts;
+    }
+  },
+  methods: {
+    getPost(){
+      this.$store.commit('post/getpost');
+    }
   }
 };
 </script>
-
-<style>
+<style scoped>
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  flex-wrap: wrap;
 }
 </style>
