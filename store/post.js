@@ -1,31 +1,39 @@
-import axios from 'axios';
+import service from '@/services/service.js'
 
 export const state = () => ({
-    "posts": []
+    "posts": [],
+    "post": {}
 })
 
 
 export const mutations = {
-    newPost(state) {
-        
+
+    getPosts(state, posts) {
+        state.posts = posts
+    },
+    getPost(state, post) {
+        state.post = post
     }
 }
 
 export const actions = {
-    // async getPost(state) {
-    //     // const res = await axios.get(`http://localhost:4000/posts`);
-    //     const res = await axios.get('http://localhost:4000/posts');
-    //     state.posts = res.data;
-    newPost({ commit }) {
-        setTimeout(function () {
-            console.log("success")
-            commit('newPost')
-        }, 3000)
+
+    // getPosts({commit}){
+    //         return service.getPosts().then(response=>{
+    //             commit('getPosts',response.data)
+    //         })
+    //     }
+
+    // replace with async function
+
+    async getPosts({ commit }) {
+        let res = await service.getPosts()
+        commit('getPosts', res.data)
     },
-    getPosts({commit}){
-        axios.get('http://localhost:4000/posts',(res)=>{
-            console.log(res.data)
-            commit('getPosts')
-        })
+
+    async getPost({ commit }, id) {
+        let res = await service.getPost(id)
+        commit('getPost', res.data)
     }
+
 }
