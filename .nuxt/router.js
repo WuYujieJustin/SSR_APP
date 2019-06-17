@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { interopDefault } from './utils'
 
-const _cbee41b6 = () => interopDefault(import('..\\pages\\todos.vue' /* webpackChunkName: "pages_todos" */))
 const _42addc01 = () => interopDefault(import('..\\pages\\postDetail\\_id.vue' /* webpackChunkName: "pages_postDetail__id" */))
 const _7b2626ec = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
@@ -81,10 +80,6 @@ export function createRouter() {
     scrollBehavior,
 
     routes: [{
-      path: "/todos",
-      component: _cbee41b6,
-      name: "todos"
-    }, {
       path: "/postDetail/:id?",
       component: _42addc01,
       name: "postDetail-id"
